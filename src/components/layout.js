@@ -1,40 +1,44 @@
 import React from 'react'
-import { Link } from 'gatsby'
+
 import { StaticQuery, graphql } from 'gatsby'
-import BackgroundImage from 'gatsby-background-image'
+import styled from "styled-components"
+import get from 'lodash/get'
+import Typist from 'react-typist';
 
 import cosmicjsLogo from '../../static/cosmicjs.svg'
 import gatsbyLogo from '../../static/gatsby.png'
 import { rhythm, scale } from '../utils/typography'
+import Bio from '../components/Bio'
+import Link from '../components/Link'
 
 // Import typefaces
 import 'typeface-montserrat'
 import 'typeface-merriweather'
 
 export default ({ children, location }) => (
+ 
   <StaticQuery
     query={graphql`
       query LayoutQuery {
         cosmicjsSettings(slug: { eq: "general" }) {
           metadata {
+            logo {
+              imgix_url
+            }
             site_heading
-            homepage_hero {
-              local {
-                childImageSharp {
-                  fluid(quality: 90, maxWidth: 1920) {
-                    ...GatsbyImageSharpFluid_withWebp
-                  }
-                }
-              }
+            author_name
+            author_bio
+            author_avatar {
+              imgix_url
             }
           }
         }
       }
     `}
     render={data => {
-      const siteTitle = data.cosmicjsSettings.metadata.site_heading
-      const homgePageHero =
-        data.cosmicjsSettings.metadata.homepage_hero.local.childImageSharp.fluid
+      const author = get(data, 'cosmicjsSettings.metadata')
+      const siteTitle = get(data, 'cosmicjsSettings.metadata.site_heading')
+      const logo = get(data, 'cosmicjsSettings.metadata.logo')
       let header
 
       let rootPath = `/`
@@ -46,70 +50,20 @@ export default ({ children, location }) => (
 
       if (location.pathname === rootPath || location.pathname === postsPath) {
         header = (
-          <BackgroundImage
+          <TitleSection
             Tag="div"
             className="post-hero"
-            fluid={homgePageHero}
-            backgroundColor={`#007ACC`}
-            style={{
-              height: rhythm(14),
-              position: 'relative',
-              marginBottom: `${rhythm(1.5)}`,
-            }}
           >
-            <h1
-              style={{
-                ...scale(1.3),
-                position: 'absolute',
-                textAlign: 'center',
-                left: 0,
-                right: 0,
-                top: rhythm(4),
-                marginTop: '0',
-                height: rhythm(2.5),
-              }}
-            >
-              <Link
-                style={{
-                  boxShadow: 'none',
-                  textDecoration: 'none',
-                  color: 'inherit',
-                }}
-                to={'/'}
-              >
-                {siteTitle}
-              </Link>
-            </h1>
-          </BackgroundImage>
-        )
-      } else {
-        header = (
-          <h3
-            style={{
-              fontFamily: 'Montserrat, sans-serif',
-              marginTop: 0,
-              marginBottom: rhythm(-1),
-              marginLeft: 'auto',
-              marginRight: 'auto',
-              maxWidth: rhythm(24),
-              paddingTop: `${rhythm(1.5)}`,
-            }}
-          >
-            <Link
-              style={{
-                boxShadow: 'none',
-                textDecoration: 'none',
-                color: 'inherit',
-              }}
-              to={'/'}
-            >
-              {siteTitle}
-            </Link>
-          </h3>
+            <Typist>
+              <Title>{"To Developers"}</Title>
+              <Typist.Backspace count={"To Developers".length} delay={200} />
+              <Title>{"By Developers"}</Title>
+            </Typist>
+          </TitleSection>
         )
       }
       return (
-        <div>
+        <AppContainer>
           {header}
           <div
             style={{
@@ -122,20 +76,17 @@ export default ({ children, location }) => (
           >
             {children}
           </div>
+          <Bio settings={author} />
           <footer
             style={{
               textAlign: 'center',
               padding: `0 20px 80px 0`,
             }}
           >
-            powered by&nbsp;
-            <a
+            Made with ❤️, &nbsp;
+            <Link
               target="_blank"
               href="https://gatsbyjs.org"
-              style={{
-                color: '#191919',
-                boxShadow: 'none',
-              }}
             >
               <img
                 src={gatsbyLogo}
@@ -146,15 +97,11 @@ export default ({ children, location }) => (
                 }}
               />
               <strong>Gatsby</strong>
-            </a>
+            </Link>
             &nbsp;and&nbsp;
-            <a
+            <Link
               target="_blank"
               href="https://cosmicjs.com"
-              style={{
-                color: '#191919',
-                boxShadow: 'none',
-              }}
             >
               <img
                 src={cosmicjsLogo}
@@ -165,10 +112,39 @@ export default ({ children, location }) => (
                 }}
               />
               <strong>Cosmic JS</strong>
-            </a>
+            </Link>
           </footer>
-        </div>
+        </AppContainer>
       )
     }}
   />
 )
+
+const AppContainer = styled.div`
+  background: #1e2227;
+  color: #fefefe;
+`
+
+const TitleSection = styled.section`
+  padding: 2rem;
+  background-image: linear-gradient(to right bottom, #f8aa00, #fab610, #fcc11d, #fecd29, #ffd835);
+  position: relative;
+  margin-bottom: ${rhythm(1.5)};
+  display: flex;
+  ${props => ({...scale(1.2)}) } 
+  justify-content: center;
+
+`
+
+const Logo =styled.img` 
+    border-radius: 50%;
+    width: 12em;
+    display: block;
+`
+
+const Title = styled.span`
+  color: white;
+  text-align: center;
+  margin-top: 0;
+  height: ${rhythm(2.5)};
+`

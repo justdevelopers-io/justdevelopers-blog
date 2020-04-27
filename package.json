@@ -7,6 +7,7 @@
     "url": "https://github.com/jazibsawar/gatsby-blog-cosmicjs/issues"
   },
   "dependencies": {
+    "babel-plugin-styled-components": "^1.10.7",
     "gatsby": "^2.20.17",
     "gatsby-background-image": "^1.1.1",
     "gatsby-image": "^2.3.4",
@@ -14,6 +15,7 @@
     "gatsby-plugin-offline": "^3.1.4",
     "gatsby-plugin-react-helmet": "^3.2.4",
     "gatsby-plugin-sharp": "^2.5.6",
+    "gatsby-plugin-styled-components": "^3.2.4",
     "gatsby-plugin-typography": "^2.4.3",
     "gatsby-source-cosmicjs": "^1.1.0",
     "gatsby-source-filesystem": "^2.2.4",
@@ -22,13 +24,18 @@
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-helmet": "^6.0.0",
+    "react-typist": "^2.0.5",
     "react-typography": "^0.16.19",
+    "styled-components": "^5.1.0",
+    "typed.js": "^2.0.11",
     "typeface-merriweather": "0.0.72",
     "typeface-montserrat": "0.0.75",
     "typography": "^0.16.19",
-    "typography-theme-wordpress-2016": "^0.16.19"
+    "typography-theme-fairy-gates": "^0.16.19",
+    "typography-theme-lincoln": "^0.16.19"
   },
   "devDependencies": {
+    "dotenv": "^8.2.0",
     "eslint": "^6.8.0",
     "eslint-plugin-react": "^7.19.0",
     "prettier": "^2.0.4"
@@ -46,6 +53,8 @@
   "scripts": {
     "start": "gatsby build; gatsby serve --port $PORT",
     "dev": "gatsby develop",
+    "dev:watch": "ENABLE_GATSBY_REFRESH_ENDPOINT=true gatsby develop",
+    "refresh-data": "curl -X POST http://localhost:8000/__refresh",
     "lint": "./node_modules/.bin/eslint --ext .js,.jsx --ignore-pattern public .",
     "test": "echo \"Error: no test specified\" && exit 1",
     "format": "prettier --trailing-comma es5 --no-semi --single-quote --write 'src/**/*.js' 'src/**/*.md'",

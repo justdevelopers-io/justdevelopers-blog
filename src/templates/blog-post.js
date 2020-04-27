@@ -1,12 +1,12 @@
 import React from 'react'
 import { Helmet } from 'react-helmet'
-import { Link } from 'gatsby'
 import get from 'lodash/get'
 import { graphql } from 'gatsby'
 import BackgroundImage from 'gatsby-background-image'
 
 import Bio from '../components/Bio'
 import Layout from '../components/layout'
+import Link from '../components/Link'
 import { rhythm, scale } from '../utils/typography'
 
 class BlogPostTemplate extends React.Component {

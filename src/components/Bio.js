@@ -1,23 +1,33 @@
 import React from 'react'
+import styled from "styled-components"
 import { rhythm } from '../utils/typography'
 
 export default ({ settings }) => (
-  <div
+  <Bio
     style={{
       display: 'flex',
       marginBottom: rhythm(2.5),
     }}
   >
-    <img
+    <Avatar
       src={settings.author_avatar.imgix_url}
       alt={settings.author_name}
-      style={{
-        marginRight: rhythm(1 / 2),
-        marginBottom: 0,
-        width: rhythm(2),
-        height: rhythm(2),
-      }}
     />
     <div dangerouslySetInnerHTML={{ __html: settings.author_bio }} />
-  </div>
+  </Bio>
 )
+
+const Bio = styled.div`
+  display: flex;
+  margin-right: ${rhythm(2)};
+  margin-left: ${rhythm(2)};
+  margin-bottom: ${rhythm(1)};
+`
+
+const Avatar = styled.img`
+  margin-right: ${rhythm(1 / 2)};
+  margin-bottom: 0;
+  width: ${rhythm(2)};
+  height: ${rhythm(2)};
+  border-radius: 50%;
+`
