@@ -4,10 +4,10 @@ import get from 'lodash/get'
 import { graphql } from 'gatsby'
 import BackgroundImage from 'gatsby-background-image'
 
-import Bio from '../components/Bio'
-import Layout from '../components/layout'
-import Link from '../components/Link'
-import { rhythm, scale } from '../utils/typography'
+import {Bio} from '@components/Layout'
+import {Layout} from '@components/Layout'
+import {Link} from '@components/common'
+import { rhythm, scale } from '@utils/typography'
 
 class BlogPostTemplate extends React.Component {
   render() {

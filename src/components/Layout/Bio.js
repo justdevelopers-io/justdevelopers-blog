@@ -1,14 +1,9 @@
 import React from 'react'
 import styled from "styled-components"
-import { rhythm } from '../utils/typography'
+import { rhythm } from '@utils/typography'
 
 export default ({ settings }) => (
-  <Bio
-    style={{
-      display: 'flex',
-      marginBottom: rhythm(2.5),
-    }}
-  >
+  <Bio>
     <Avatar
       src={settings.author_avatar.imgix_url}
       alt={settings.author_name}

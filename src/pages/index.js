@@ -3,10 +3,9 @@ import get from 'lodash/get'
 import { Helmet } from 'react-helmet'
 import { graphql } from 'gatsby'
 
-
-import Layout from '../components/layout'
-import { rhythm } from '../utils/typography'
-import Link from '../components/Link'
+import {Layout} from '@components/Layout'
+import { rhythm } from '@utils/typography'
+import {Link} from '@components/common'
 
 class BlogIndex extends React.Component {
   render() {
