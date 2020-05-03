@@ -1,13 +1,11 @@
 import React from 'react'
 import { Helmet } from 'react-helmet'
 import get from 'lodash/get'
-import { graphql } from 'gatsby'
+import { graphql, Link } from 'gatsby'
 import GatsbyBackgroundImage from 'gatsby-background-image'
 
-import { Bio } from '@components/Layout'
 import { Layout } from '@components/Layout'
-import { Link } from '@components/common'
-import styled from 'styled-components'
+import styled from '@styles'
 import { rhythm, scale } from '@utils/typography'
 
 import PostContent from '@components/Post/PostContent'
@@ -61,19 +59,19 @@ class BlogPostTemplate extends React.Component {
           }}
         >
           {previous && (
-            <PreviousPostLink>
-              <EllipsedLink to={`posts/${previous.slug}`} rel="prev">
+            <PostLinkWrapper>
+              <EllipsedLink to={`/posts/${previous.slug}`} rel="prev">
                 ← {previous.title}
               </EllipsedLink>
-            </PreviousPostLink>
+            </PostLinkWrapper>
           )}
 
           {next && (
-            <NextPostLink>
-              <EllipsedLink to={`posts/${next.slug}`} rel="next">
+            <PostLinkWrapper>
+              <EllipsedLink to={`/posts/${next.slug}`} rel="next">
                 {next.title} →
               </EllipsedLink>
-            </NextPostLink>
+            </PostLinkWrapper>
           )}
         </ul>
       </Layout>
@@ -83,7 +81,7 @@ class BlogPostTemplate extends React.Component {
 
 const PostTitle = styled.h1`
   margin-top: ${rhythm(1)};
-  color: #fcc11d;
+  color: var(--yellow);
 `
 
 const PostDate = styled.p`
@@ -103,18 +101,13 @@ const EllipsedLink = styled(Link)`
   width: 100%;
 `
 
-const PostLink = styled.li`
+const PostLinkWrapper = styled.li`
   width: 100%;
+  :first-of-type {
+    margin-bottom: 1.5rem;  
+  }
 `
 
-const PreviousPostLink = styled(PostLink)`
-  /* padding-right: 2.5rem; */
-  margin-bottom: 1.5rem;  
-`
-
-const NextPostLink = styled(PostLink)`
-  /* padding-left: 2.5rem; */
-`
 
 export default BlogPostTemplate
 

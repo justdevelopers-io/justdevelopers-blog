@@ -1,5 +1,5 @@
 import React from 'react'
-import styled, {css} from "styled-components"
+import styled, {css} from "@styles"
 import { rhythm } from '@utils/typography'
 
 

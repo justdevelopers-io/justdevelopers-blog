@@ -5,7 +5,7 @@ import { graphql } from 'gatsby'
 
 import {Layout} from '@components/Layout'
 import { rhythm } from '@utils/typography'
-import {Link} from '@components/common'
+import {Link} from 'gatsby'
 
 class BlogIndex extends React.Component {
   render() {
@@ -19,22 +19,6 @@ class BlogIndex extends React.Component {
 
     return (
       <Layout location={location}>
-         <style>
-          {`
-          .Typist .Cursor {
-            display: inline-block;
-          }
-          .Typist .Cursor--blinking {
-            opacity: 1;
-            animation: blink 1s linear infinite;
-          }
-          @keyframes blink {
-            0% { opacity:1; }
-            50% { opacity:0; }
-            100% { opacity:1; }
-          }
-        `}
-        </style>
         <Helmet title={siteTitle} />
         {posts.map(({ node }) => {
           const title = get(node, 'title') || node.slug
@@ -45,7 +29,7 @@ class BlogIndex extends React.Component {
                   marginBottom: rhythm(1 / 4),
                 }}
               >
-                <Link style={{ boxShadow: 'none' }} to={`posts/${node.slug}`}>
+                <Link to={`/posts/${node.slug}`}>
                   {title}
                 </Link>
               </h3>

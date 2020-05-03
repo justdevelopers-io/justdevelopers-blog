@@ -1,16 +1,15 @@
 import React from 'react'
-import styled from 'styled-components'
-import {Link} from '@components/common'
+import styled from '@styles'
 import cosmicjsLogo from '@static/cosmicjs.svg'
 
 const CosmicLogo = () => (
-  <Link target="_blank" href="https://cosmicjs.com">
+  <a target="_blank" href="https://cosmicjs.com">
     <Logo
       src={cosmicjsLogo}
       alt="Cosmic JS"
     />
     <strong>Cosmic JS</strong>
-  </Link>
+  </a>
 )
 
 export default CosmicLogo

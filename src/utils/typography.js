@@ -1,31 +1,10 @@
 import Typography from 'typography'
 import FairyGates from 'typography-theme-fairy-gates'
 
+
 FairyGates.overrideThemeStyles = () => ({
-  'a': {
-    boxShadow: 'none',
-    textDecoration: 'none',
-    backgroundImage: 'none',
-    textShadow: '1px 1px 1px black',
-    color: "#fcc11d"
-  },
-  'a:hover': {
-    color: "#84daf8",
-    textDecoration: "underline"
-  },
-  "ul": {
-    "margin-bottom": 0
-  },
-  "hr": {
-    "background-color": "#f7be1e",
-  },
-  'blockquote': {
-    'border-width': '.25rem',
-    'border-color': "#fcc11d",
-    'text-align': 'justify',
-    'font-style': 'initial',
-    'font-size': '1rem',
-    color: '#84daf8'
+  'h1, h2, h3, h4 , h5, h6': {
+    color: 'inherit',
   }
 })
 
