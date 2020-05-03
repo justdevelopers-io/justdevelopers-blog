@@ -66,9 +66,9 @@ export default ({ children, location }) => {
           </Content>
           <Bio settings={author} />
           <Footer>
-            Made with ❤️, &nbsp;
+            {"Made with ❤️, "}
             <GatsbyLogo />
-            &nbsp;and&nbsp;
+            {" and "}
             <CosmicLogo />
           </Footer>
         </AppContainer>
@@ -80,7 +80,7 @@ export default ({ children, location }) => {
 
 const AppContainer = styled.div`
   background: #1e2227;
-  color: #fefefe;
+  color: #fbf9e6;
 `
 
 const NavBar = styled.nav`
@@ -92,11 +92,12 @@ const Content = styled.div`
   max-width: ${rhythm(24)};
   padding: 0 ${rhythm(3 / 4)} ${rhythm(1.5)} ${rhythm(3 / 4)};
   min-height: calc(100vh - 42px);
+  line-height: 1.6;
 `
 
 const Footer = styled.footer`
   text-align: center;
-  padding: 0 20px 80px 0;
+  padding: 0 1.17rem 2.34rem 1.17rem;
 `
 
 const TitleSection = styled.section`
@@ -105,7 +106,7 @@ const TitleSection = styled.section`
   position: relative;
   margin-bottom: ${rhythm(1.5)};
   display: flex;
-  ${props => ({...scale(1.2)}) } 
+  ${props => ({...scale(1.1)}) } 
   justify-content: center;
 `
 
@@ -120,11 +121,4 @@ const Logo =styled.img`
     border-radius: 50%;
     width: 12em;
     display: block;
-`
-
-const Title = styled.span`
-  color: white;
-  text-align: center;
-  margin-top: 0;
-  height: ${rhythm(2.5)};
 `

@@ -2,14 +2,20 @@ import React from 'react'
 import { Helmet } from 'react-helmet'
 import get from 'lodash/get'
 import { graphql } from 'gatsby'
-import BackgroundImage from 'gatsby-background-image'
+import GatsbyBackgroundImage from 'gatsby-background-image'
 
-import {Bio} from '@components/Layout'
-import {Layout} from '@components/Layout'
-import {Link} from '@components/common'
+import { Bio } from '@components/Layout'
+import { Layout } from '@components/Layout'
+import { Link } from '@components/common'
+import styled from 'styled-components'
 import { rhythm, scale } from '@utils/typography'
 
+import PostContent from '@components/Post/PostContent'
+
+
 class BlogPostTemplate extends React.Component {
+
+
   render() {
     const post = this.props.data.cosmicjsPosts
     const siteTitle = get(
@@ -22,69 +28,26 @@ class BlogPostTemplate extends React.Component {
 
     return (
       <Layout location={location}>
-        <style>
-          {`
-          .post-content {
-            text-align: justify;
-          }
-          .post-hero {
-            width: calc(100% + ${rhythm(8)});
-            margin-left: ${rhythm(-4)};
-            height: ${rhythm(18)};
-          }
-          @media (max-width: ${rhythm(32)}) {
-            .post-hero {
-              width: calc(100% + ${rhythm((3 / 4) * 2)});
-              margin-left: ${rhythm(-3 / 4)};
-              height: ${rhythm(13)};
-            }
-          }
-        `}
-        </style>
         <Helmet title={`${post.title} | ${siteTitle}`} />
-        <div
-          style={{
-            marginTop: rhythm(1.4),
-          }}
-        >
-          <Link to="/">← Back to Posts</Link>
-        </div>
-        <h1
-          style={{
-            marginTop: rhythm(1),
-          }}
-        >
-          {post.title}
-        </h1>
-        <p
-          style={{
-            ...scale(-1 / 5),
-            display: 'block',
-            marginBottom: rhythm(0.6),
-            marginTop: rhythm(-0.6),
-          }}
-        >
-          {post.created}
-        </p>
-        <BackgroundImage
-          Tag="div"
-          className="post-hero"
-          fluid={post.metadata.hero.local.childImageSharp.fluid}
-          backgroundColor={`#007ACC`}
-          style={{
-            marginBottom: rhythm(0.6),
-          }}
-        />
-        <div
-          className="post-content"
-          dangerouslySetInnerHTML={{ __html: post.content }}
-        />
+        <PostTitle>{post.title}</PostTitle>
+        <PostDate>{post.created}</PostDate>
+        {
+          post.headerImage && (
+            <GatsbyBackgroundImage
+              Tag="div"
+              fluid={post.metadata.hero.local.childImageSharp.fluid}
+              backgroundColor={`#007ACC`}
+            />
+          )
+        }
+        
+        <PostContent content={post.content}/>
         <hr
           style={{
             marginBottom: rhythm(1),
           }}
         />
-        <Bio settings={author} />
+        {/* <Bio settings={author} /> */}
 
         <ul
           style={{
@@ -93,28 +56,65 @@ class BlogPostTemplate extends React.Component {
             justifyContent: 'space-between',
             listStyle: 'none',
             padding: 0,
+            marginLeft: 0,
+            textAlign: 'center'
           }}
         >
           {previous && (
-            <li>
-              <Link to={`posts/${previous.slug}`} rel="prev">
+            <PreviousPostLink>
+              <EllipsedLink to={`posts/${previous.slug}`} rel="prev">
                 ← {previous.title}
-              </Link>
-            </li>
+              </EllipsedLink>
+            </PreviousPostLink>
           )}
 
           {next && (
-            <li>
-              <Link to={`posts/${next.slug}`} rel="next">
+            <NextPostLink>
+              <EllipsedLink to={`posts/${next.slug}`} rel="next">
                 {next.title} →
-              </Link>
-            </li>
+              </EllipsedLink>
+            </NextPostLink>
           )}
         </ul>
       </Layout>
     )
   }
 }
+
+const PostTitle = styled.h1`
+  margin-top: ${rhythm(1)};
+  color: #fcc11d;
+`
+
+const PostDate = styled.p`
+  display: block;
+  margin-bottom: ${rhythm(0.6)};
+  ${(props) => ({ ...scale(-1 / 5) })}
+`
+
+const BackgroundImage = styled(GatsbyBackgroundImage)`
+  margin-bottom: ${rhythm(0.6)}
+`
+
+const EllipsedLink = styled(Link)`
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  width: 100%;
+`
+
+const PostLink = styled.li`
+  width: 100%;
+`
+
+const PreviousPostLink = styled(PostLink)`
+  /* padding-right: 2.5rem; */
+  margin-bottom: 1.5rem;  
+`
+
+const NextPostLink = styled(PostLink)`
+  /* padding-left: 2.5rem; */
+`
 
 export default BlogPostTemplate
 

@@ -6,6 +6,7 @@ require("dotenv").config({
 const path = require('path')
 
 module.exports = {
+  
   plugins: [
     `gatsby-plugin-offline`,
     `gatsby-plugin-react-helmet`,

@@ -10,8 +10,22 @@ FairyGates.overrideThemeStyles = () => ({
     color: "#fcc11d"
   },
   'a:hover': {
-    color: "#00a6b2",
+    color: "#84daf8",
     textDecoration: "underline"
+  },
+  "ul": {
+    "margin-bottom": 0
+  },
+  "hr": {
+    "background-color": "#f7be1e",
+  },
+  'blockquote': {
+    'border-width': '.25rem',
+    'border-color': "#fcc11d",
+    'text-align': 'justify',
+    'font-style': 'initial',
+    'font-size': '1rem',
+    color: '#84daf8'
   }
 })
 
