@@ -49,18 +49,21 @@ export default ({ children, location, onlyContent }) => {
               <Content>{children}</Content>
             </>
           )
+        
 
+        const sentences = ['Resources', 'Tutorials','Tips', 'To Developers', 'By Developers']
         return (
           <AppContainer>
             <GlobalStyles />
             <Navbar />
-            <TitleSection Tag="div" className="post-hero">
-              <Typist
-                component={Title}
-                sentences={['To Developers', 'By Developers']}
-              />
-            </TitleSection>
+           
             <Content>{children}</Content>
+            <TypingSection Tag="div" className="post-hero">
+              <Typist
+                component={TypingTitle}
+                sentences={sentences}
+              />
+            </TypingSection>
             <Bio settings={author} />
             <Footer>
               {'Made with ❤️, '}
@@ -85,7 +88,7 @@ const Content = styled.div`
   margin-left: auto;
   margin-right: auto;
   max-width: ${rhythm(24)};
-  padding: 0 ${rhythm(3 / 4)} ${rhythm(1.5)} ${rhythm(3 / 4)};
+  padding: ${rhythm(1.5)} ${rhythm(3 / 4)};
   line-height: 1.6;
   flex-grow: 1;
 `
@@ -95,8 +98,8 @@ const Footer = styled.footer`
   padding: 0 1.17rem 2.34rem 1.17rem;
 `
 
-const TitleSection = styled.section`
-  padding: 5rem;
+const TypingSection = styled.section`
+  padding: 2rem;
   background-image: var(--yellowGradient);
   position: relative;
   margin-bottom: ${rhythm(1.5)};
@@ -105,7 +108,7 @@ const TitleSection = styled.section`
   justify-content: center;
 `
 
-const Title = styled.span`
+const TypingTitle = styled.span`
   color: white;
   text-align: center;
   margin-top: 0;

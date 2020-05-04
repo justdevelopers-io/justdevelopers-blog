@@ -31,6 +31,16 @@ const Navbar = styled.nav`
   z-index: 1;
   display: grid;
   box-shadow: 0px 5px 10px 5px #0000007a;
+  position: relative;
+
+  ::after {
+    content: "";
+    position: absolute;
+    height:4px;
+    width: 100%;
+    background: var(--yellowLightBlueGradient);
+    bottom: 0;
+  }
 `
 
 const Menu = styled.ul`
@@ -58,23 +68,25 @@ const MenuItem = styled.li`
     left: 50%;
     transform: translateX(-50%);
     border-bottom: solid 4px var(--yellow);
-    transition: 0.2s ease-in-out width;
+    transition: 0.25s ease-in-out width;
   }
   :hover {
     ::after {
       width: 100%;
-      border-bottom: solid 4px var(--lightBlue);
     }
   }
-  a:hover {
-    text-decoration: none;
+  a {
+    color: inherit;
+    :hover {
+      text-decoration: none;
+    }
   }
 `
 
 const MainLogo = styled.img`
   width: 120px;
   margin-bottom: 0;
-  transition: .1s ease-in-out transform;
+  transition: .5s ease-in-out transform;
   :hover {
     transform: scale(1.15);
   }

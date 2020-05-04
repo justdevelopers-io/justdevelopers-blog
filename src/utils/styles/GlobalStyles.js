@@ -10,7 +10,9 @@ const GlobalStyles = createGlobalStyle`
       /* --lightBlue: #84daf8; */
       --lightBlue: #01a6b2;
       --textColor: #fbf9e6;
+      --lightBlueTextColor: #54d4dd;
       --bgColor: #1e2227;
+      --yellowLightBlueGradient: linear-gradient(86deg, var(--yellow) 0%, var(--lightBlue) 100%);
       --yellowGradient: linear-gradient(
           to right bottom,
           #f8aa00,
@@ -39,7 +41,7 @@ const GlobalStyles = createGlobalStyle`
     color: var(--yellow);
 
     :hover {
-        color: var(--lightBlue);
+        color: var(--lightBlueTextColor);
         text-decoration: underline;
     }
   }
@@ -60,7 +62,7 @@ const GlobalStyles = createGlobalStyle`
     text-align: justify;
     font-style: initial;
     font-size: 1rem;
-    color: var(--lightBlue);
+    color: var(--lightBlueTextColor);
   }
 
 `
