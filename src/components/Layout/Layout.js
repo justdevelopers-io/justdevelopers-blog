@@ -6,7 +6,7 @@ import { StaticQuery, graphql } from 'gatsby'
 import { GlobalStyles } from '@styles'
 import { rhythm, scale } from '@utils/typography'
 import { Typist } from '@components/Common'
-import { Bio } from '@components/Layout'
+import { Bio, Navbar } from '@components/Layout'
 import { CosmicLogo, GatsbyLogo } from '@components/Logos'
 
 export default ({ children, location, onlyContent }) => {
@@ -46,33 +46,29 @@ export default ({ children, location, onlyContent }) => {
           return (
             <>
               <GlobalStyles />
-              <AppContainer>
-                <Content>{children}</Content>
-              </AppContainer>
+              <Content>{children}</Content>
             </>
           )
 
         return (
-          <>
+          <AppContainer>
             <GlobalStyles />
-            <AppContainer>
-              <NavBar></NavBar>
-              <TitleSection Tag="div" className="post-hero">
-                <Typist
-                  component={Title}
-                  sentences={['To Developers', 'By Developers']}
-                />
-              </TitleSection>
-              <Content>{children}</Content>
-              <Bio settings={author} />
-              <Footer>
-                {'Made with ❤️, '}
-                <GatsbyLogo />
-                {' and '}
-                <CosmicLogo />
-              </Footer>
-            </AppContainer>
-          </>
+            <Navbar />
+            <TitleSection Tag="div" className="post-hero">
+              <Typist
+                component={Title}
+                sentences={['To Developers', 'By Developers']}
+              />
+            </TitleSection>
+            <Content>{children}</Content>
+            <Bio settings={author} />
+            <Footer>
+              {'Made with ❤️, '}
+              <GatsbyLogo />
+              {' and '}
+              <CosmicLogo />
+            </Footer>
+          </AppContainer>
         )
       }}
     />
@@ -80,10 +76,10 @@ export default ({ children, location, onlyContent }) => {
 }
 
 const AppContainer = styled.div`
-  
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
 `
-
-const NavBar = styled.nav``
 
 const Content = styled.div`
   margin-left: auto;
@@ -91,6 +87,7 @@ const Content = styled.div`
   max-width: ${rhythm(24)};
   padding: 0 ${rhythm(3 / 4)} ${rhythm(1.5)} ${rhythm(3 / 4)};
   line-height: 1.6;
+  flex-grow: 1;
 `
 
 const Footer = styled.footer`
@@ -99,7 +96,7 @@ const Footer = styled.footer`
 `
 
 const TitleSection = styled.section`
-  padding: 2rem;
+  padding: 5rem;
   background-image: var(--yellowGradient);
   position: relative;
   margin-bottom: ${rhythm(1.5)};

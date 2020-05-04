@@ -7,7 +7,8 @@ const GlobalStyles = createGlobalStyle`
 
   :root {
       --yellow: #fcc11d;
-      --lightBlue: #84daf8;
+      /* --lightBlue: #84daf8; */
+      --lightBlue: #01a6b2;
       --textColor: #fbf9e6;
       --bgColor: #1e2227;
       --yellowGradient: linear-gradient(
@@ -38,7 +39,7 @@ const GlobalStyles = createGlobalStyle`
     color: var(--yellow);
 
     :hover {
-        color: #84daf8;
+        color: var(--lightBlue);
         text-decoration: underline;
     }
   }

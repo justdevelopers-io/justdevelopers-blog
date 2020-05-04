@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link } from 'gatsby'
 import { Layout } from '@components/Layout'
-import styled, {device} from '@styles'
+import styled, { device } from '@styles'
 import FourOhFourGif from '@static/404.gif'
 import FourOhFourGifAlt from '@static/404-2.gif'
 import JDLogo from '@static/jd-logo2.png'
@@ -12,7 +12,7 @@ const NotFoundPage = ({ location }) => {
   const randomGif = gifs[Math.floor(Math.random() * 2)]
   return (
     <Layout location={location} onlyContent>
-      <CenteredContent>
+      <Container>
         <Logo src={JDLogo} />
         <Title>Page Not Found</Title>
         <img src={randomGif} />
@@ -21,8 +21,7 @@ const NotFoundPage = ({ location }) => {
           <Link to={'/'}>Home</Link>
           <span>{', you are drunk... or lost'}</span>
         </Description>
-      </CenteredContent>
-     
+      </Container>
     </Layout>
   )
 }
@@ -33,7 +32,7 @@ const Logo = styled.img`
   margin-top: 2rem;
 `
 
-const CenteredContent = styled.div`
+const Container = styled.div`
   text-align: center;
 `
 
