@@ -53,7 +53,7 @@ const GlobalStyles = createGlobalStyle`
   }
 
   hr {
-    background-color: var(--yellow);
+    background: var(--yellowLightBlueGradient);
   }
 
   blockquote {
