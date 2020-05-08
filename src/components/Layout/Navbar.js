@@ -1,38 +1,54 @@
 import React from 'react'
-import styled, {device} from '@styles'
+import styled, { device, css } from '@styles'
 import { Link } from 'gatsby'
 import JDLogo from '@static/jd-logo.png'
 
-export default () => {
+const routes = ['/blog', '/about', '/tips', '/comunnity']
+
+export default (props) => {
+  const isCurrentRoute = (route) =>
+    props.location.pathname.match(new RegExp(`^${route}`))
   return (
     <Navbar>
       <Menu>
         <MenuItem>
-          <Link to="/posts"> Blog </Link>
+          <MenuItemLink
+            rotateLeft
+            isActive={isCurrentRoute('/posts')}
+            to="/posts"
+          >
+            {' '}
+            Blog{' '}
+          </MenuItemLink>
         </MenuItem>
         <MenuItem>
-          <Link to="/posts"> Tutorials </Link>
+          <MenuItemLink isActive={isCurrentRoute('/tips')} to="/tips">
+            {' '}
+            Tips{' '}
+          </MenuItemLink>
         </MenuItem>
-        {/* <MenuItem>
-          <Link to="/posts"> Posts </Link>
-        </MenuItem> */}
       </Menu>
 
       <LogoWrapper to="/">
         <MainLogo src={JDLogo} alt={'Just Developers Logo'} />
       </LogoWrapper>
       <Menu>
-        {/* <MenuItem>
-          <Link to="/about"> About us</Link>
-        </MenuItem> */}
         <MenuItem>
-          <Link to="/about"> Community</Link>
+          <MenuItemLink
+            rotateLeft
+            isActive={isCurrentRoute('/comunnity')}
+            to="/community"
+          >
+            {' '}
+            Community
+          </MenuItemLink>
         </MenuItem>
         <MenuItem>
-          <Link to="/about"> About us</Link>
+          <MenuItemLink isActive={isCurrentRoute('/about')} to="/about">
+            {' '}
+            About us
+          </MenuItemLink>
         </MenuItem>
-      
-
       </Menu>
     </Navbar>
   )
@@ -48,9 +64,9 @@ const Navbar = styled.nav`
   position: relative;
 
   ::after {
-    content: "";
+    content: '';
     position: absolute;
-    height:4px;
+    height: 4px;
     width: 100%;
     background: var(--yellowLightBlueGradient);
     bottom: 0;
@@ -59,7 +75,6 @@ const Navbar = styled.nav`
   @media ${device.TABLET} {
     padding: 1rem;
   }
-
 `
 
 const Menu = styled.ul`
@@ -88,35 +103,36 @@ const Menu = styled.ul`
     grid-column-end: initial;
     flex-wrap: wrap;
     flex-direction: row;
-    grid-gap: .5rem;
-    
+    grid-gap: 0.5rem;
   }
- 
 `
 
 const MenuItem = styled.li`
-  text-transform: uppercase;
   margin: 0;
   margin-top: 1rem;
-  
-  /* border-bottom: solid 4px var(--yellow); */
-
   position: relative;
-
+  transition: 0.2s ease-in transform;
+  text-transform: uppercase;
 
   @media ${device.TABLET} {
-    margin: .8rem;
+    margin: 0.8rem;
   }
+`
 
-  transition: 0.2s ease-in transform;
+const activeLinkStyle = css`
+  transform: rotateZ(${(props) => (props.rotateLeft ? '-' : '')}5deg);
+  text-decoration: none;
+  color: var(--lightBlueTextColor);
+  ::after {
+    width: 90%;
+  }
+`
 
-  :nth-of-type(2n):hover {
-      transform: rotateZ(5deg);
-    }
-    :nth-of-type(2n+1):hover {
-      transform: rotateZ(-5deg);
-    }
-  /* ::after {
+const MenuItemLink = styled(Link)`
+  color: inherit;
+  display: inline-block;
+  text-decoration: none;
+  ::after {
     content: '';
     position: absolute;
     width: 0;
@@ -124,39 +140,13 @@ const MenuItem = styled.li`
     left: 50%;
     transform: translateX(-50%);
     border-bottom: solid 4px var(--yellow);
-    transition: 0.25s ease-in-out width;
+    transition: 0.2s ease-in width;
   }
-
   :hover {
-    color: var(--lightBlueTextColor);
-    ::after {
-      width: 100%;
-    }
-  } */
-  a {
-    color: inherit;
-
-    :hover,
-    .selected {
-      text-decoration: none;
-      color: var(--lightBlueTextColor);
-      ::after {
-        width: 90%;
-      }
-    }
-
-    ::after {
-      content: '';
-      position: absolute;
-      width: 0;
-      bottom: -0.25rem;
-      left: 50%;
-      transform: translateX(-50%);
-      border-bottom: solid 4px var(--yellow);
-      transition: 0.2s ease-in width;
-    }
-
+    ${activeLinkStyle}
   }
+
+  ${(props) => props.isActive && activeLinkStyle}
 `
 
 const LogoWrapper = styled(Link)`
@@ -167,15 +157,13 @@ const LogoWrapper = styled(Link)`
   @media ${device.TABLET} {
     grid-column-end: initial;
     grid-row-start: initial;
-    
   }
- 
 `
 
 const MainLogo = styled.img`
   width: 100px;
   margin-bottom: 0;
-  transition: .5s ease-in-out transform;
+  transition: 0.5s ease-in-out transform;
   :hover {
     transform: scale(1.15);
   }

@@ -55,7 +55,7 @@ export default ({ children, location, onlyContent }) => {
         return (
           <AppContainer>
             <GlobalStyles />
-            <Navbar />
+            <Navbar location={location}/>
            
             <Content>{children}</Content>
             <TypingSection Tag="div" className="post-hero">

@@ -27,7 +27,7 @@ const NotFoundPage = ({ location }) => {
 }
 
 const Logo = styled.img`
-  width: 50px;
+  width: 120px;
   margin-bottom: 1.25rem;
   margin-top: 2rem;
 `
