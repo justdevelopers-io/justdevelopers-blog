@@ -14,8 +14,8 @@ export default (props) => {
         <MenuItem>
           <MenuItemLink
             rotateLeft
-            isActive={isCurrentRoute('/posts')}
-            to="/posts"
+            isActive={isCurrentRoute('/blog')}
+            to="/blog"
           >
             {' '}
             Blog{' '}

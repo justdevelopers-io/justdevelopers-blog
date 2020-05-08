@@ -5,9 +5,10 @@ const path = require('path')
 exports.createPages = ({ graphql, actions }) => {
   const { createPage } = actions
   const indexPage = path.resolve('./src/pages/index.js')
+  const blogIndexPage = path.resolve('./src/pages/blogIndex.js')
   createPage({
-    path: `posts`,
-    component: indexPage,
+    path: `blog`,
+    component: blogIndexPage,
   })
 
   return new Promise((resolve, reject) => {
@@ -40,7 +41,7 @@ exports.createPages = ({ graphql, actions }) => {
           const previous = index === 0 ? null : posts[index - 1].node;
 
           createPage({
-            path: `posts/${post.node.slug}`,
+            path: `blog/${post.node.slug}`,
             component: blogPost,
             context: {
               slug: post.node.slug,

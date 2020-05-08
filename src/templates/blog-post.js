@@ -60,7 +60,7 @@ class BlogPostTemplate extends React.Component {
         >
           {previous && (
             <PostLinkWrapper>
-              <EllipsedLink to={`/posts/${previous.slug}`} rel="prev">
+              <EllipsedLink to={`/blog/${previous.slug}`} rel="prev">
                 ← {previous.title}
               </EllipsedLink>
             </PostLinkWrapper>
@@ -68,7 +68,7 @@ class BlogPostTemplate extends React.Component {
 
           {next && (
             <PostLinkWrapper>
-              <EllipsedLink to={`/posts/${next.slug}`} rel="next">
+              <EllipsedLink to={`/blog/${next.slug}`} rel="next">
                 {next.title} →
               </EllipsedLink>
             </PostLinkWrapper>

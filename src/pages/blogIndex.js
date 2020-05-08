@@ -21,12 +21,12 @@ class BlogIndex extends React.Component {
       <Layout location={location}>
         <Helmet title={siteTitle} />
         <SectionTitle>Recent Posts</SectionTitle>
-        {/* {posts.map(({ node }) => {
+        {posts.map(({ node }) => {
           const title = get(node, 'title') || node.slug
           return (
             <div key={node.slug}>
               <Post>
-                <Link to={`/posts/${node.slug}`}>{title}</Link>
+                <Link to={`/blog/${node.slug}`}>{title}</Link>
               </Post>
               <PostDate>{node.created}</PostDate>
               <p
@@ -34,7 +34,7 @@ class BlogIndex extends React.Component {
               />
             </div>
           )
-        })} */}
+        })}
       </Layout>
     )
   }
@@ -61,7 +61,7 @@ const PostDate = styled.small`
 export default BlogIndex
 
 export const pageQuery = graphql`
-  query IndexQuery {
+  query BlogIndexQuery {
     allCosmicjsPosts(
         sort: { 
           fields: [created], 
