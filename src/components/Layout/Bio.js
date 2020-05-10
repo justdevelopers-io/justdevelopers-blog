@@ -18,14 +18,17 @@ export default ({ settings }) => (
 
 const Bio = styled.div`
   display: flex;
-  max-width: ${rhythm(24)};
-  margin-right: auto;
-  margin-left: auto;
+  /* max-width: ${rhythm(24)}; */
+  /* margin-right: auto;
+  margin-left: auto; */
   font-size: 0.75rem;
   margin-bottom: 2.5rem;
   padding: 0 1.17rem;
   align-items: center;
   text-align: center;
+  width: 100%;
+  background: var(--yellow);
+  padding: 1rem calc((100% - 34.8rem) / 2);
 
   @media ${device.TABLET} {
     font-size: 0.85rem;
@@ -37,6 +40,18 @@ const StyledBioDescription = styled(BioDescription)`
     return css`
       p {
         margin-bottom: 0;
+        color: var(--bgColor);
+      }
+      strong {
+        color: #213843;
+      }
+      a {
+        background: var(--bgColor);
+        padding: 1px 5px;
+        border-radius: 4px;
+        :hover {
+          text-decoration: none;
+        }
       }
     `
   }}

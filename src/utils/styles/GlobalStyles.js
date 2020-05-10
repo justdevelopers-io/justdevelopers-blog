@@ -11,6 +11,7 @@ const GlobalStyles = createGlobalStyle`
       --lightBlue: #01a6b2;
       --textColor: #fbf9e6;
       --lightBlueTextColor: #54d4dd;
+      --blueTextColor: #213843;
       --bgColor: #1e2227;
       --yellowLightBlueGradient: linear-gradient(86deg, var(--yellow) 0%, var(--lightBlue) 100%);
       --yellowGradient: linear-gradient(

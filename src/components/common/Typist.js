@@ -4,6 +4,7 @@ import styled, { keyframes, css } from '@styles'
 
 const Typist = ({ sentences, component: Component }) => {
   const [completed, setCompleted] = useState(true)
+  
   useEffect(() => {
     setCompleted(true)
   }, [completed])
